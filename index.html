@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniel Cho</title>
+
+  <!-- Fixedsys Excelsior — William Lin's gvim font (public domain) -->
+  <style>
+    @font-face {
+      font-family: 'Fixedsys';
+      src: url('https://cdn.jsdelivr.net/gh/kika/fixedsys@master/fonts/FSEX300.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+
+  <!-- EB Garamond for body text -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       gvim default color palette (X11 exact)
+    ───────────────────────────────────────── */
+    :root {
+      --bg:        #ffffff;
+      --text:      #000000;
+      --muted:     #555555;
+      --border:    #d8d8d8;
+      --surface:   #f7f7f7;
+
+      /* gvim syntax colors */
+      --brown:     #a52a2a;   /* Statement / Keyword  */
+      --cyan:      #008b8b;   /* Identifier / DarkCyan */
+      --blue:      #0000ff;   /* Comment / Blue       */
+      --magenta:   #ff00ff;   /* Constant / Magenta   */
+      --purple:    #800080;   /* PreProc / Purple     */
+      --green:     #2e8b57;   /* Type / SeaGreen      */
+      --slate:     #6a5acd;   /* Special / SlateBlue  */
+
+      /* refined — same hues as gvim, web-friendly (matches gvim-theme.html) */
+      --r-brown:   #8b3a2a;   /* Statement brown  */
+      --r-cyan:    #1a7a7a;   /* DarkCyan         */
+      --r-blue:    #1a3d8b;   /* Comment navy     */
+      --r-purple:  #6b3d9a;   /* PreProc plum     */
+      --r-green:   #2a7a4a;   /* Type green       */
+      --r-slate:   #4a4a9a;   /* Special slate    */
+
+      /* font stacks */
+      --mono: 'Fixedsys', 'Courier New', Courier, monospace;
+      --serif: 'EB Garamond', Georgia, serif;
+    }
+
+    /* ─────────────────────────────────────────
+       Reset & base
+    ───────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 28px 80px;
+    }
+
+    a {
+      color: var(--r-cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ─────────────────────────────────────────
+       Navigation
+    ───────────────────────────────────────── */
+    nav {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: 32px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 52px;
+      font-family: var(--mono);
+      font-size: 14px;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }
+
+    nav .logo {
+      color: var(--r-brown);
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      margin-right: auto;
+    }
+
+    nav a {
+      color: var(--r-cyan);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    nav a:hover {
+      color: var(--r-brown);
+      text-decoration: none;
+    }
+
+    /* ─────────────────────────────────────────
+       Hero / intro
+    ───────────────────────────────────────── */
+    .hero {
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: normal;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: var(--r-brown);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .hero .links {
+      margin-top: 20px;
+      display: flex;
+      gap: 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }
+
+    .hero .links a {
+      color: var(--r-cyan);
+    }
+
+    .hero .links a::before {
+      content: '→ ';
+      color: var(--border);
+    }
+
+    /* ─────────────────────────────────────────
+       Section headers
+    ───────────────────────────────────────── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--r-blue);
+      margin-bottom: 16px;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* ─────────────────────────────────────────
+       Projects
+    ───────────────────────────────────────── */
+    .projects {
+      margin-bottom: 48px;
+    }
+
+    .project {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--surface);
+    }
+
+    .project:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .project-title {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--r-brown);
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }
+
+    .project-title a {
+      color: var(--r-brown);
+    }
+
+    .project-title a:hover {
+      color: var(--brown);
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 1px 7px;
+      letter-spacing: 0.04em;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }
+
+    .tag-purple {
+      background: #faf0ff;
+      color: var(--r-purple);
+      border: 1px solid #e8d0f0;
+    }
+
+    .tag-green {
+      background: #f0faf4;
+      color: var(--r-green);
+      border: 1px solid #b8ddc8;
+    }
+
+    .project p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    .project p em {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* ─────────────────────────────────────────
+       About / Bio
+    ───────────────────────────────────────── */
+    .about p {
+      color: var(--muted);
+      margin-bottom: 14px;
+      max-width: 580px;
+    }
+
+    .about p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       ASCII art block
+    ───────────────────────────────────────── */
+    .ascii {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--r-slate);
+      opacity: 0.35;
+      margin-top: 36px;
+      letter-spacing: 0.05em;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+      user-select: none;
+    }
+
+    /* ─────────────────────────────────────────
+       Footer
+    ───────────────────────────────────────── */
+    footer {
+      margin-top: 64px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--border);
+      display: flex;
+      justify-content: space-between;
+      -webkit-font-smoothing: none;
+      font-smooth: never;
+    }
+
+    footer a {
+      color: var(--border);
+    }
+
+    footer a:hover {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    /* ─────────────────────────────────────────
+       Subtle fade-in on load
+    ───────────────────────────────────────── */
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body > * {
+      animation: fadein 0.4s ease both;
+    }
+
+    nav   { animation-delay: 0.00s; }
+    .hero { animation-delay: 0.06s; }
+    hr    { animation-delay: 0.10s; }
+    .projects { animation-delay: 0.14s; }
+    .about    { animation-delay: 0.18s; }
+    footer    { animation-delay: 0.22s; }
+
+    /* ─────────────────────────────────────────
+       Responsive
+    ───────────────────────────────────────── */
+    @media (max-width: 520px) {
+      body { padding: 0 18px 60px; }
+      nav  { gap: 16px; font-size: 12px; }
+      .hero h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <span class="logo">daniel cho</span>
+    <a href="#projects">projects</a>
+    <a href="#about">about</a>
+    <a href="mailto:danielcho@u.northwestern.edu">contact</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <h1>
+      Math &amp; CS<span> @ Northwestern.</span><br>
+      Quant. Builder. Solver.
+    </h1>
+    <p>
+      Four-time AIME qualifier. I build things at the intersection of
+      combinatorics, machine learning, and markets. Graduating June 2026,
+      targeting quantitative trading and research roles.
+    </p>
+    <p>
+      Top 5% finish at IMC Prosperity 2. 10th place, AI-Alpha Contest.
+      Currently working through a LucidFlex prop trading evaluation on MES
+      micro futures.
+    </p>
+    <div class="links">
+      <a href="https://github.com/danyol0101" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/danielcho" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="/resume.pdf" target="_blank">Resume</a>
+    </div>
+
+    <div class="ascii" aria-hidden="true">
+┌─ tetrominoes ───────────────────┐<br>
+│  □ □ ■ □   ■ ■   □ ■ □ □  □ □  │<br>
+│  □ ■ ■ □   ■ ■   □ ■ □ □  □ ■  │<br>
+│  □ □ ■ □          □ □ □ □  □ □  │<br>
+└─────────────────────────────────┘
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── PROJECTS ── -->
+  <section class="projects" id="projects">
+    <p class="section-label">Selected Projects</p>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">
+          <a href="https://github.com/danyol0101/tetrominoes" target="_blank" rel="noopener">Tetrominoes</a>
+        </span>
+        <div class="project-tags">
+          <span class="tag tag-purple">C++</span>
+          <span class="tag tag-purple">TypeScript</span>
+          <span class="tag tag-purple">Three.js</span>
+          <span class="tag tag-green">Combinatorics</span>
+        </div>
+      </div>
+      <p>
+        A React/TypeScript/Three.js tiling research tool using
+        <em>Dancing Links (DLX)</em> exact cover algorithm. Proved an original
+        parity theorem extending a published Rose-Hulman paper, and achieved a
+        100× solver speedup over naive backtracking.
+      </p>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">
+          <a href="https://github.com/danyol0101/prize-picks" target="_blank" rel="noopener">Prize Picks</a>
+        </span>
+        <div class="project-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-green">ML Ensemble</span>
+          <span class="tag tag-green">Backtesting</span>
+        </div>
+      </div>
+      <p>
+        Statistical sports betting pipeline with walk-forward ML ensemble
+        combining <em>logistic regression, random forest, and gradient boosting</em>.
+        Seven-strategy backtesting framework with Kelly criterion position sizing
+        and a live Dash dashboard.
+      </p>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">
+          <a href="https://github.com/danyol0101/rl-sports" target="_blank" rel="noopener">RL Sports Betting Agent</a>
+        </span>
+        <div class="project-tags">
+          <span class="tag tag-purple">Python</span>
+          <span class="tag tag-green">Stable-Baselines3</span>
+          <span class="tag tag-green">React</span>
+        </div>
+      </div>
+      <p>
+        Reinforcement learning agent trained with <em>Stable-Baselines3</em> on
+        historical sports data, with a live React/Chart.js visualization dashboard
+        showing agent decisions and cumulative PnL in real time.
+      </p>
+    </div>
+
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ── ABOUT ── -->
+  <section class="about" id="about">
+    <p class="section-label">About</p>
+    <div>
+      <p>
+        I'm a senior at Northwestern University studying Mathematics and Computer
+        Science, graduating June 2026. My background is in competition mathematics
+        — four AIME qualifications — which shapes how I approach algorithmic and
+        quantitative problems.
+      </p>
+      <p>
+        I've done research with Professor Benjamin Weinkove on gradient flow
+        dynamics and t-SNE kernel generalization. On the trading side, I placed
+        top 5% at IMC Prosperity 2 and am currently working toward a prop trading
+        evaluation on MES micro futures using an Opening Range Breakout strategy.
+      </p>
+      <p>
+        I'm targeting quantitative trading and research roles at firms like
+        Jane Street, Citadel, HRT, and Two Sigma. Reach me at
+        <a href="mailto:danielcho@u.northwestern.edu">danielcho@u.northwestern.edu</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span>Daniel Cho · 2026</span>
+    <span>
+      <a href="https://github.com/danyol0101/danyol0101.github.io" target="_blank" rel="noopener">source</a>
+    </span>
+  </footer>
+
+  <!--
+  ██████╗  █████╗ ███╗   ██╗██╗███████╗██╗
+  ██╔══██╗██╔══██╗████╗  ██║██║██╔════╝██║
+  ██║  ██║███████║██╔██╗ ██║██║█████╗  ██║
+  ██║  ██║██╔══██║██║╚██╗██║██║██╔══╝  ██║
+  ██████╔╝██║  ██║██║ ╚████║██║███████╗███████╗
+  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚══════╝
+  you found it :)
+  -->
+
+</body>
+</html>
