@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japanese · Daniel Cho</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Mate&family=PT+Sans&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" />
+
+  <style>
+    body {
+      font-family: "Mate", serif;
+      background-color: #f6f6f6;
+      color: #121212;
+      font-size: 16px;
+    }
+
+    .container { max-width: 800px; }
+
+    strong { color: #af1111; }
+
+    pre, code { font-family: "JetBrains Mono", monospace; }
+
+    a:link, a:visited { color: #2188e0; text-decoration: none; }
+    a:hover { color: #006b57; text-shadow: 0 0 5px #ff0; text-decoration: underline; }
+
+    h1 {
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 22px;
+      color: #3333ff;
+      font-family: "Roboto Slab", serif;
+    }
+
+    h2 {
+      color: #078a03;
+      font-size: 20px;
+      font-weight: 600;
+      padding-top: 6px;
+      font-family: "Roboto Slab", serif;
+    }
+
+    h3 {
+      color: #a40f71;
+      font-size: 18px;
+      font-weight: 600;
+      font-family: "Roboto Slab", serif;
+    }
+
+    /* ── Header ── */
+    #header {
+      font-family: "Roboto Slab", serif;
+      background-color: #faebd7;
+      border: 3px solid #b22222;
+      border-radius: 11px;
+      margin-top: 5px;
+      margin-bottom: 8px;
+      padding: 6px 12px 10px;
+      overflow: hidden;
+    }
+
+    #sitetitle {
+      font-size: 40px;
+      color: #ff6600;
+      font-weight: 500;
+      font-family: "Roboto Slab", serif;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    #sitesubtitle {
+      font-size: 14px;
+      color: #555;
+      font-family: "PT Sans", sans-serif;
+      margin-top: 2px;
+    }
+
+    #social-links {
+      font-family: "PT Sans", sans-serif;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    #social-links a { color: #2188e0; margin-right: 10px; }
+    #social-links a:hover { color: #006b57; text-shadow: 0 0 5px #ff0; }
+
+    /* ── Sidebar ── */
+    #side {
+      border: 1px solid #6a5acd;
+      border-radius: 11px;
+      background-color: #afeeee;
+      line-height: 20px;
+      padding: 9px 12px;
+      margin-top: 7px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    #side:hover { outline: 1px solid #6a5acd; }
+
+    #side h4 {
+      font-family: "PT Sans", sans-serif;
+      font-weight: normal;
+      font-size: 16px;
+      margin-top: 8px;
+      margin-bottom: 3px;
+    }
+
+    #side h5 {
+      font-family: "PT Sans", sans-serif;
+      font-weight: normal;
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 3px;
+      margin-bottom: 1px;
+    }
+
+    #side h4 strong, #side h5 strong {
+      font-style: normal;
+      color: #7d0081;
+    }
+
+    #side a:link, #side a:visited { color: #2188e0; }
+    #side a:hover { color: #006b57; text-shadow: none; }
+
+    #email_box {
+      margin-top: 4px;
+      background-color: #87ceeb;
+      border-radius: 9px;
+      border: 2px solid #48d1cc;
+      padding: 3px 10px;
+      font-size: 80%;
+      display: inline-block;
+      word-break: break-all;
+    }
+
+    /* ── Main ── */
+    #main {
+      padding: 5px;
+      border: 1px solid #2e8b57;
+      border-radius: 11px;
+      background-color: #b2fee1;
+      margin-top: 7px;
+    }
+
+    #pagetitle, .pagetitle { font-weight: 700; margin-left: 16px; }
+
+    div.entry {
+      border-bottom: 1px dashed #cccccc;
+      margin-top: 9px;
+      overflow: hidden;
+      padding-bottom: 16px;
+    }
+
+    div.entry:last-child { border-bottom: none; }
+
+    div.entrywrap {
+      background-color: #dedede;
+      border: 1px solid #000000;
+      margin: 8px;
+      overflow: auto;
+      padding: 12px 12px 16px;
+      border-radius: 7px;
+    }
+
+    div.entrywrap p { margin-bottom: 10px; }
+    div.entrywrap p:last-child { margin-bottom: 0; }
+
+    div.entrywrap ul { padding-left: 1.4em; margin-bottom: 0; }
+    div.entrywrap ul li { margin-bottom: 4px; }
+
+    /* ── Tags ── */
+    .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      padding: 1px 5px;
+      background-color: #e8d5f5;
+      border: 1px solid #c9a0e0;
+      border-radius: 3px;
+      color: #5a0080;
+      margin-right: 3px;
+    }
+
+    .tag-green {
+      background-color: #d5f5e0;
+      border-color: #a0e0b5;
+      color: #1a6b35;
+    }
+
+    .done { color: #078a03; font-weight: bold; }
+    .wip  { color: #c47d00; font-weight: bold; }
+    .todo { color: #888; }
+
+    /* ── Footer ── */
+    #footer {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: #aaa;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    #footer a:link, #footer a:visited { color: #aaa; }
+    #footer a:hover { color: #555; text-shadow: none; }
+
+    @media (max-width: 767px) {
+      #sitetitle { font-size: 28px; }
+      #side { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container py-2">
+
+    <!-- ── HEADER ── -->
+    <div id="header">
+      <div id="sitetitle"><a href="/" style="color: inherit; text-decoration: none;">Daniel Cho</a></div>
+      <div id="sitesubtitle">Math &amp; CS @ Northwestern · Quant · Builder</div>
+      <div id="social-links">
+        <a href="mailto:danielcho@u.northwestern.edu">email</a>
+        <a href="https://github.com/danyol0101" target="_blank" rel="noopener">github</a>
+        <a href="https://linkedin.com/in/danielcho" target="_blank" rel="noopener">linkedin</a>
+        <a href="https://quantguide.io" target="_blank" rel="noopener">quantguide</a>
+        <a href="/resume.pdf" target="_blank">cv</a>
+      </div>
+    </div>
+
+    <!-- ── CONTENT ROW ── -->
+    <div id="content" class="row">
+
+      <!-- ── SIDEBAR ── -->
+      <div class="col-12 col-md-3 order-md-last">
+        <div id="side">
+
+          <h4>Navigation</h4>
+          <h5>• <a href="/">Home</a></h5>
+          <h5>• <a href="/projects">Projects</a></h5>
+          <h5>• <a href="/writing">Writing</a></h5>
+          <h5>• <a href="/math">Math</a></h5>
+          <h5>• <a href="/trading">Trading</a></h5>
+          <h5>• <a href="/hobbies">Hobbies</a></h5>
+          <h5>• <a href="/resume.pdf" target="_blank">CV</a></h5>
+
+          <h4>Hobbies</h4>
+          <h5>• <a href="/reading">Reading</a></h5>
+          <h5>• <strong>Japanese</strong></h5>
+          <h5>• <a href="/memorization">Memory</a></h5>
+
+          <h4>Writing</h4>
+          <h5>• <a href="/writing/divide-by-91">Divide-by-91 trick</a></h5>
+          <h5>• <a href="/writing/superpermutations">Superpermutations</a></h5>
+          <h5>• <a href="/writing/orb-strategy">ORB strategy notes</a></h5>
+          <h5>• <a href="/writing/imc-prosperity">IMC Prosperity writeup</a></h5>
+
+          <h4>Math</h4>
+          <h5>• <a href="/math/aime">AIME solutions</a></h5>
+          <h5>• <a href="/math/counting">Counting &amp; Probability</a></h5>
+          <h5>• <a href="/math/parity">Parity theorem</a></h5>
+
+          <h4>External</h4>
+          <h5>• <a href="https://github.com/danyol0101" target="_blank" rel="noopener">GitHub</a></h5>
+          <h5>• <a href="https://linkedin.com/in/danielcho" target="_blank" rel="noopener">LinkedIn</a></h5>
+          <h5>• <a href="https://quantguide.io" target="_blank" rel="noopener">QuantGuide</a></h5>
+
+          <h4>Contact</h4>
+          <div id="email_box">
+            <a href="mailto:danielcho@u.northwestern.edu">danielcho@u.northwestern.edu</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── MAIN CONTENT ── -->
+      <div class="col-12 col-md-9 order-md-1">
+        <div id="main">
+
+          <div class="entry">
+            <h1 id="pagetitle">Japanese · 日本語</h1>
+            <div class="entrywrap">
+              <p>Started learning Japanese from zero in 2025. Long-term goal: read manga and light novels in the original without a dictionary. Medium-term: pass JLPT N5.</p>
+              <p>Approach: kana first via spaced repetition, then grammar through Genki, then vocabulary via Anki + immersion. Logging milestones here so I can look back and see the curve.</p>
+            </div>
+          </div>
+
+          <div class="entry">
+            <h2>Progress Milestones</h2>
+            <div class="entrywrap">
+              <ul>
+                <li><span class="wip">in progress</span> · Hiragana (46 characters)</li>
+                <li><span class="todo">todo</span> · Katakana (46 characters)</li>
+                <li><span class="todo">todo</span> · Genki I — Chapter 1–6 (basic grammar)</li>
+                <li><span class="todo">todo</span> · ~500 N5 vocabulary words via Anki</li>
+                <li><span class="todo">todo</span> · Genki I — complete (Chapters 1–12)</li>
+                <li><span class="todo">todo</span> · ~800 N5/N4 vocab words</li>
+                <li><span class="todo">todo</span> · Read first manga volume with dictionary</li>
+                <li><span class="todo">todo</span> · JLPT N5 exam</li>
+                <li><span class="todo">todo</span> · JLPT N4 exam</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="entry">
+            <h2>Resources</h2>
+            <div class="entrywrap">
+              <ul>
+                <li><strong><a href="https://www.tofugu.com/japanese/learn-hiragana/" target="_blank" rel="noopener">Tofugu — Learn Hiragana</a></strong> · mnemonic-based intro</li>
+                <li><strong>Anki</strong> · spaced repetition for kana and vocabulary</li>
+                <li><strong>Genki I</strong> (3rd ed.) · grammar and sentence patterns</li>
+                <li><strong><a href="https://www.wanikani.com" target="_blank" rel="noopener">WaniKani</a></strong> · kanji via radicals (for later)</li>
+                <li><strong><a href="https://jisho.org" target="_blank" rel="noopener">Jisho</a></strong> · dictionary</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="entry">
+            <h2>Log</h2>
+            <div class="entrywrap">
+              <p><em>Add dated notes here as milestones are reached.</em></p>
+              <!-- Example entry format:
+              <p><code>2025-MM-DD</code> — Finished hiragana. Can read ひらがな at ~3 sec/char.</p>
+              -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /.row -->
+
+    <!-- ── FOOTER ── -->
+    <div id="footer">
+      <span>Daniel Cho · 2026</span>
+      <span><a href="https://github.com/danyol0101/danyol0101.github.io" target="_blank" rel="noopener">source</a></span>
+    </div>
+
+  </div><!-- /.container -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
